@@ -8,5 +8,5 @@ import com.app.dto.ApiResponse;
 
 public interface ImageHandlingService {
 	ApiResponse uploadImage(Long vehicleId, MultipartFile image) throws IOException;
-	String downloadImage(Long vehicleId) throws IOException;
+	byte[] downloadImage(Long vehicleId) throws IOException;
 }

@@ -8,7 +8,9 @@ import com.app.dto.AddVehicalDto;
 import com.app.dto.ApiResponse;
 import com.app.dto.ServiceLocationDto;
 import com.app.dto.UpdateVehicleDto;
+import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleTypeDto;
 import com.app.entities.Vehicle;
 
 public interface VehicleService {
@@ -28,5 +30,9 @@ public interface VehicleService {
 	public VehicleResponseDto getVehicleById(Long vehicleId)throws IOException;
 	
 	public ApiResponse updateVehicle(UpdateVehicleDto vehicleDto);
+	
+	public List<VehicleBrandDto> getAllVehicleBrands();
+	
+	public List<VehicleTypeDto> getAllVehicleTypes();
 	
 }

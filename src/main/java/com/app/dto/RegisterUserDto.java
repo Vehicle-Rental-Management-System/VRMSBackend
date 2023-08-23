@@ -37,13 +37,13 @@ public class RegisterUserDto {
 	@Range(min = 16, message = "Too young to drive a vehicle")
 	private int age;
 	
-	@Length(min = 10, message = "Enter valid mobile number")
+	//@Length(min = 10, message = "Enter valid mobile number")
 	private String mobileNo;
 	
 	@Length(min = 12, message = "Enter valid aadhar number")
 	private String aadharNo;
 	
-	@Length(min = 16, message = "Enter valid license number")
+	//@Length(min = 16, message = "Enter valid license number")
 	private String licenseNo;
 
 }
