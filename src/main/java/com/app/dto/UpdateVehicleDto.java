@@ -20,6 +20,5 @@ public class UpdateVehicleDto {
 	@NotBlank(message = "Should enter fuel type")
 	private String fuelType;
 	
-	@NotBlank(message = "Should enter service location")
 	private Long serviceLocationId;
 }

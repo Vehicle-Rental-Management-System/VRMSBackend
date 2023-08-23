@@ -18,10 +18,10 @@ import lombok.ToString;
 @Setter
 public class AddBookingDto {
 
-	@NotBlank(message = "should enter start date")
+
 	private LocalDate startDate;
 	
-	@NotBlank(message = "should enter end date")
+	
 	private LocalDate endDate;
 	 
 	private Double amount;
