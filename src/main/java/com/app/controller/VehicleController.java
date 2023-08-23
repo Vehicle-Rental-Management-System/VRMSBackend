@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.app.dto.AddVehicalDto;
 import com.app.dto.ApiResponse;
 import com.app.dto.UpdateVehicleDto;
+import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleTypeDto;
 import com.app.entities.Vehicle;
 import com.app.service.ImageHandlingService;
 import com.app.service.VehicleService;
@@ -104,8 +106,22 @@ public class VehicleController {
 	// http://host:port/vehicles/images/{vehicleId} , method=GET
 	@GetMapping(value="/images/{vehicleId}",produces = {IMAGE_GIF_VALUE,
 			IMAGE_JPEG_VALUE,IMAGE_PNG_VALUE})
-	public String serveVehicleImage(@PathVariable Long vehicleId) throws IOException {
+	public byte[] serveVehicleImage(@PathVariable Long vehicleId) throws IOException {
 		System.out.println("in download img " + vehicleId);
 		return imgService.downloadImage(vehicleId);
+	}
+	
+	
+	@GetMapping("/vehicle_types")
+	public List<VehicleTypeDto> getAllVehicleTypes()throws IOException{
+		
+		return vehicleService.getAllVehicleTypes();
+	}
+	
+	
+	@GetMapping("/vehicle_brands")
+	public List<VehicleBrandDto> getAllVehicleBrands()throws IOException{
+		
+		return vehicleService.getAllVehicleBrands();
 	}
 }

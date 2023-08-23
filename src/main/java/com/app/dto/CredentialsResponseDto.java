@@ -13,4 +13,6 @@ public class CredentialsResponseDto {
 	private Long id;
 	private String jwt;
 	private String mesg;
+	private Long userId;
+	private String userName;
 }

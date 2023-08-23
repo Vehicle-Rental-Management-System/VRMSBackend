@@ -61,13 +61,13 @@ public class ImageHandlingServiceImpl implements ImageHandlingService {
 	}
 
 	@Override
-	public String downloadImage(Long vehicleId) throws IOException {
+	public byte[] downloadImage(Long vehicleId) throws IOException {
 		// get vehicle by id
 		Vehicle vehicle = vehicleRepo.findById(vehicleId).orElseThrow(() -> new RuntimeException("Invalid vehicle ID!!!!"));
 		// vehicle found --> PERSISTENT
 		String path = vehicle.getImagePath();
 		if (path != null) {
-			return path;
+			return FileUtils.readFileToByteArray(new File(path));
 		} else
 			throw new RuntimeException("Image not yet assigned !!!!");
 	}

@@ -32,12 +32,12 @@ public class AddVehicalDto {
 	@NotBlank(message = "Should enter passing year")
 	private String passingYear;
 	
-	@NotBlank(message = "Should enter type of car")
+	//@NotBlank(message = "Should enter type of car")
 	private Long typeId;
 	
-	@NotBlank(message = "Should enter brand of car")
+	//@NotBlank(message = "Should enter brand of car")
 	private Long brandId;
 	
-	@NotBlank(message = "Should enter location")
+	//@NotBlank(message = "Should enter location")
 	private Long serviceLocationId;
 }

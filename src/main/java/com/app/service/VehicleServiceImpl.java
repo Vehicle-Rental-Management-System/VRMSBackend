@@ -22,7 +22,9 @@ import com.app.dto.ApiResponse;
 import com.app.dto.ServiceLocationDto;
 import com.app.dto.ServiceLocationResponseDto;
 import com.app.dto.UpdateVehicleDto;
+import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleTypeDto;
 import com.app.entities.BookingDetailsEntity;
 import com.app.entities.ServiceLocationEntity;
 import com.app.entities.Vehicle;
@@ -188,6 +190,31 @@ public class VehicleServiceImpl implements VehicleService {
 		}
 		
 		return new ApiResponse("vehicle updated");
+	}
+	
+	@Override
+	public List<VehicleBrandDto> getAllVehicleBrands() {
+		
+		List<VehicleBrand> vehicleBrandList = vehicleBrandRepo.findAll();
+		
+		
+		List<VehicleBrandDto> vehicleListResponse = vehicleBrandList.stream() //Stream<Emp>
+		.map(vehicle -> mapper.map(vehicle, VehicleBrandDto.class)) //Stream<DTO>
+		.collect(Collectors.toList());
+		
+		return vehicleListResponse;
+	}
+	
+	@Override
+	public List<VehicleTypeDto> getAllVehicleTypes() {
+		List<VehicleType> vehicleTypeList = vehicleTypeRepo.findAll();
+		
+		
+		List<VehicleTypeDto> vehicleListResponse = vehicleTypeList.stream() //Stream<Emp>
+		.map(vehicle -> mapper.map(vehicle, VehicleTypeDto.class)) //Stream<DTO>
+		.collect(Collectors.toList());
+		
+		return vehicleListResponse;
 	}
 	
 	

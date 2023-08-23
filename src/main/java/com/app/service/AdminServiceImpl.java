@@ -29,8 +29,8 @@ public class AdminServiceImpl implements AdminService {
 		AdminEntity admin = adminRepo.findByEmailAndPassword(email, password)
 										.orElseThrow(()-> new RuntimeException("Invalid Admin Email or Password"));
 		
-		return admin != null ? new CredentialsResponseDto(admin.getId(),utils.generateJwtToken(loginAdminDto),"Sign In Successfull") : 
-			new CredentialsResponseDto(null,null,"Sign In Unsuccessfull");
+		return admin != null ? new CredentialsResponseDto(admin.getId(),utils.generateJwtToken(loginAdminDto),"Sign In Successfull",admin.getId(),admin.getFirstName()) : 
+			new CredentialsResponseDto(null,null,"Sign In Unsuccessfull",null,null);
 		
 	}
 	

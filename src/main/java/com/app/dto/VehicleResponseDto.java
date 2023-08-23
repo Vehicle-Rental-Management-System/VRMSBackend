@@ -15,7 +15,7 @@ public class VehicleResponseDto {
 	private String fuelType;
 	private String passingYear;
 	private String status;
-	private String imageFile;
+	private byte[] imageFile;
 	private VehicleTypeDto type;
 
 	

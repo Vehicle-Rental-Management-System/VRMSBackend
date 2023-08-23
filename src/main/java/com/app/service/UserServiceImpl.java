@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
 		UserEntity user = userRepo.findByEmailAndPassword(email, password)
 				.orElseThrow(()-> new RuntimeException("Invalid User Email or Password"));
 		
-		return user != null ? new CredentialsResponseDto(user.getId(),utils.generateJwtToken(loginUserDto),"Sign In Successfull") : 
-			new CredentialsResponseDto(null,null,"Sign In Unsuccessfull");
+		return user != null ? new CredentialsResponseDto(user.getId(),utils.generateJwtToken(loginUserDto),"Sign In Successfull",user.getId(),user.getFirstName()) : 
+			new CredentialsResponseDto(null,null,"Sign In Unsuccessfull",null,null);
 	}
 	
 	@Override
