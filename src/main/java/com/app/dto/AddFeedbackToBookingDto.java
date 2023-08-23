@@ -20,7 +20,7 @@ public class AddFeedbackToBookingDto {
 	@NotBlank(message = "Should enter feedback")
 	private String bookingFeedback;
 	
-    @NotBlank(message = "Should enter rating")
+    
 	private Integer rating;
 	
 	
