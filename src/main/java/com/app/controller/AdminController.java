@@ -37,6 +37,7 @@ public class AdminController {
 	public ApiResponse updateForgotPassword(@RequestBody @Valid CredentialsRequestDto adminDto) {
 		return adminService.updateForgotPasswordOfAdmin(adminDto);
 	}
+	// Get Valid Admin
 	
 	
 	
