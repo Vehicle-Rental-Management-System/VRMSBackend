@@ -14,7 +14,7 @@ import com.app.dto.CancelBookingDto;
 
 public interface BookingService {
 
-	public ApiResponse addBookingDetails(AddBookingDto bookingDto, Long userId);
+	public BookingResponseDto addBookingDetails(AddBookingDto bookingDto, Long userId);
 	public List<BookingDto> getMyBookings(Long userId);
 	public List<BookingResponseDto> getAllBookings();
 	public ApiResponse cancelBooking(CancelBookingDto cancelDto);
