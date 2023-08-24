@@ -68,8 +68,8 @@ public class BookingController {
 		return bookingService.cancelBooking(cancelBookingDto);
 	}
 	
-	@PostMapping("/yearly_revenue")
-	public Double getYearlyRevenue(@RequestBody Integer year) throws SQLException {
+	@GetMapping("/yearly_revenue/{year}")
+	public Double getYearlyRevenue(@PathVariable String year) throws SQLException {
 		
 		return bookingService.getYearlyRevenue(year);
 	}

@@ -22,5 +22,5 @@ public interface BookingService {
 	
 	public ApiResponse addFeedbackToBooking(AddFeedbackToBookingDto addFeedbackToBookingDto);
 	
-	public Double getYearlyRevenue(Integer year) throws SQLException;
+	public Double getYearlyRevenue(String year) throws SQLException;
 }
