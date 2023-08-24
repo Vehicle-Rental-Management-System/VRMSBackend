@@ -2,11 +2,14 @@ package com.app.service;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.AdminRepository;
+import com.app.dto.AdminResponseDto;
 import com.app.dto.ApiResponse;
+import com.app.dto.ChangePasswordDto;
 import com.app.dto.CredentialsRequestDto;
 import com.app.dto.CredentialsResponseDto;
 import com.app.entities.AdminEntity;
@@ -21,6 +24,10 @@ public class AdminServiceImpl implements AdminService {
 	private AdminRepository adminRepo;
 	@Autowired
 	private JwtUtils utils;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
 	
 	@Override
 	public CredentialsResponseDto getValidAdmin(CredentialsRequestDto loginAdminDto) {
@@ -44,15 +51,27 @@ public class AdminServiceImpl implements AdminService {
 	   return admin != null ? new ApiResponse("Valid Admin") : new ApiResponse("Invalid Admin");
 	}
 	
+	
 	@Override
-	public ApiResponse updateForgotPasswordOfAdmin(CredentialsRequestDto userDto) {
-		AdminEntity admin = adminRepo.findByEmail(userDto.getEmail())
-							.orElseThrow(() -> new RuntimeException("Invalid Admin Email"));
-		if(admin != null) {
-			admin.setPassword(userDto.getPassword());
-			return new ApiResponse("Password Added Successfully");
-		}else {
-			return new ApiResponse("Invalid Email");
+	public ApiResponse changePasswordOfAdmin(ChangePasswordDto passwordDto) {
+		AdminEntity admin = adminRepo.findById(passwordDto.getId())
+				.orElseThrow(() -> new RuntimeException("Invalid admin Id"));
+		
+		if(admin.getPassword().equals(passwordDto.getOldPassword())) {
+			admin.setPassword(passwordDto.getNewPassword());
+			return new ApiResponse("Password Changed Successfully");
 		}
+		return new ApiResponse("Your Old Password is not Matched");
 	}
+	
+	@Override
+	public AdminResponseDto getValidAdminById(Long id) {
+		AdminEntity admin = adminRepo.findById(id).orElseThrow(()-> new RuntimeException("Not a valid admin Id"));
+		if(admin != null) {
+			return mapper.map(admin, AdminResponseDto.class);
+		}
+		return null;
+	}
+	
+	
 }

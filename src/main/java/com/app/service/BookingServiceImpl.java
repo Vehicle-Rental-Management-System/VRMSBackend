@@ -163,18 +163,12 @@ public class BookingServiceImpl implements BookingService {
 	}
 	
 	@Override
-	public Double getYearlyRevenue(Integer year) throws SQLException {
+	public Double getYearlyRevenue(String year) throws SQLException {
 		// TODO Auto-generated method stub
 		
-//		if(bookingRepo.findRevenueByYear(year).next() {
-//			Double amount=bookingRepo.findRevenueByYear(year).getDouble(0);
-//			System.out.println(amount);
-//			return amount;
-//		}
-//		return 0.0;
-		
-		
-		return bookingRepo.findRevenueByYear(year);
 
+		Integer yr=Integer.valueOf(year);
+		
+		return bookingRepo.findRevenueByYear(yr);
 }
 }
