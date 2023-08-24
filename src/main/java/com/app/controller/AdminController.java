@@ -46,6 +46,7 @@ public class AdminController {
 	
 	@GetMapping("/{id}")
 	public AdminResponseDto getValidAdmin(@PathVariable Long id) {
+        //GetValid Admin api
 		return adminService.getValidAdminById(id);
 	}
 	
