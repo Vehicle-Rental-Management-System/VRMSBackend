@@ -58,7 +58,7 @@ public class BookingController {
 		return bookingService.getAllBookingsWithFeedback();
 	}
 	
-	@PutMapping("/addfeedbacktobooking/{bookingId}")
+	@PutMapping("/addfeedbacktobooking")
 	public ApiResponse addFeedbackToBooking(@RequestBody @Valid AddFeedbackToBookingDto addFeedbackToBookingDto ) {
 		return bookingService.addFeedbackToBooking(addFeedbackToBookingDto);
 	}
