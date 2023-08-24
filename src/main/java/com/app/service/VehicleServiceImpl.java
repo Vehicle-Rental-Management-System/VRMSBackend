@@ -24,6 +24,7 @@ import com.app.dto.ServiceLocationResponseDto;
 import com.app.dto.UpdateVehicleDto;
 import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleResponseToCustomerDto;
 import com.app.dto.VehicleTypeDto;
 import com.app.entities.BookingDetailsEntity;
 import com.app.entities.ServiceLocationEntity;
@@ -112,7 +113,7 @@ public class VehicleServiceImpl implements VehicleService {
 		
 		for(int i=0;i<vehicleList.size();i++) {
 			vehicleListResponse.get(i).setLocation(mapper.map(vehicleList.get(i).getServiceLocation(), ServiceLocationResponseDto.class));
-			vehicleListResponse.get(i).setImageFile(imgService.downloadImage(vehicleList.get(i).getId()));
+			
 		}
 		
 		return vehicleListResponse;
@@ -136,7 +137,7 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 	
 	@Override
-	public List<VehicleResponseDto> getAllVehiclesByServiceLocation(Long id)throws IOException {
+	public List<VehicleResponseToCustomerDto> getAllVehiclesByServiceLocation(Long id)throws IOException {
 		
 		ServiceLocationEntity location = serviceLocationRepo.findById(id)
 										.orElseThrow(()-> new RuntimeException("Service Location not found"));
@@ -144,9 +145,9 @@ public class VehicleServiceImpl implements VehicleService {
 		Set<Vehicle> vehicleList = location.getVehicleSet();
 		
 		
-		List<VehicleResponseDto> vehicleResponseList = vehicleList.stream() 
+		List<VehicleResponseToCustomerDto> vehicleResponseList = vehicleList.stream() 
 											.filter(vehicle-> vehicle.getStatus().equalsIgnoreCase("Available"))
-											.map(vehicle -> mapper.map(vehicle, VehicleResponseDto.class)) //Stream<DTO>
+											.map(vehicle -> mapper.map(vehicle, VehicleResponseToCustomerDto.class)) //Stream<DTO>
 											.collect(Collectors.toList());
 //		vehicleResponseList.forEach(vehicle -> vehicle.setImageFile(imgService.downloadImage(vehicle.getId())));
 		for(int i=0;i<vehicleResponseList.size();i++) {
@@ -158,11 +159,11 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 	
 	@Override
-	public VehicleResponseDto getVehicleById(Long vehicleId)throws IOException {
+	public VehicleResponseToCustomerDto getVehicleById(Long vehicleId)throws IOException {
 		Vehicle vehicle = vehicleRepo.findById(vehicleId)
 										.orElseThrow(()-> new RuntimeException("Vehicle not found"));
 		
-		VehicleResponseDto vehicleResponse = mapper.map(vehicle, VehicleResponseDto.class);
+		VehicleResponseToCustomerDto vehicleResponse = mapper.map(vehicle, VehicleResponseToCustomerDto.class);
 		vehicleResponse.setImageFile(imgService.downloadImage(vehicleResponse.getId()));
 		
 		return vehicleResponse;

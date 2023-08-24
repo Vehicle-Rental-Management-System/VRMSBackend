@@ -6,6 +6,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.ChangePasswordDto;
 import com.app.dto.ProfileDto;
 import com.app.dto.RegisterUserDto;
+import com.app.dto.ValidateUserDto;
 import com.app.dto.CredentialsRequestDto;
 import com.app.dto.CredentialsResponseDto;
 
@@ -18,6 +19,6 @@ public interface UserService {
 	public ApiResponse editUserProfile(ProfileDto profile);
 	public ProfileDto getUserById(Long id);
 	public ApiResponse changePassword(ChangePasswordDto passDto);
-	public ApiResponse getValidUserByEmail(String email);
+	public ApiResponse getValidUserByEmail(ValidateUserDto validUser);
 	public ApiResponse updateForgotPasswordOfUser(CredentialsRequestDto userDto);
 }

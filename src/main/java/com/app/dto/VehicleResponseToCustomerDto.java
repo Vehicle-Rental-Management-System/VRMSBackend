@@ -1,3 +1,4 @@
+
 package com.app.dto;
 
 import lombok.AllArgsConstructor;
@@ -9,12 +10,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class VehicleResponseDto {
+public class VehicleResponseToCustomerDto {
 	private Long id;
 	private String vehicleNo;
 	private String fuelType;
 	private String passingYear;
 	private String status;
+	private byte[] imageFile;
 	private VehicleTypeDto type;
 
 	
