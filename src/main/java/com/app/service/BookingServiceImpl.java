@@ -63,7 +63,7 @@ public class BookingServiceImpl implements BookingService {
 		UserEntity users= userRepo.findById(userId).orElseThrow(()-> new RuntimeException("user not found"));
 		Vehicle vehicle = vehicleRepo.findById(bookingDto.getVehicleId()).orElseThrow(()-> new RuntimeException("vehicle not found"));
 		BookingDetailsEntity booking= mapper.map(bookingDto, BookingDetailsEntity.class);
-		vehicle.setStatus("NotAvailable");
+		//vehicle.setStatus("NotAvailable");
 		booking.setVehicle(vehicle);
 		booking.setUsers(users);
 		booking.setBookDate(LocalDate.now());
@@ -85,7 +85,7 @@ public class BookingServiceImpl implements BookingService {
 		List<BookingDetailsEntity> bookingEntity=users.getBookings();
 		
 		
-		List<BookingDto> bookingDto=bookingEntity.stream().map(booking-> mapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+		List<BookingDto> bookingDto=bookingEntity.stream().filter(booking-> booking.getStatus().equals("Pending") || booking.getStatus().equals("Successfull")).map(booking-> mapper.map(booking, BookingDto.class)).collect(Collectors.toList());
 		
 		return bookingDto;
 	}

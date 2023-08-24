@@ -10,6 +10,7 @@ import com.app.dto.ServiceLocationDto;
 import com.app.dto.UpdateVehicleDto;
 import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleResponseToCustomerDto;
 import com.app.dto.VehicleTypeDto;
 import com.app.entities.Vehicle;
 
@@ -24,10 +25,10 @@ public interface VehicleService {
 	
 	public List<VehicleResponseDto> getReservedVehicles()throws IOException;
 	
-	public List<VehicleResponseDto> getAllVehiclesByServiceLocation(Long id)throws IOException;
+	public List<VehicleResponseToCustomerDto> getAllVehiclesByServiceLocation(Long id)throws IOException;
 
 	
-	public VehicleResponseDto getVehicleById(Long vehicleId)throws IOException;
+	public VehicleResponseToCustomerDto getVehicleById(Long vehicleId)throws IOException;
 	
 	public ApiResponse updateVehicle(UpdateVehicleDto vehicleDto);
 	

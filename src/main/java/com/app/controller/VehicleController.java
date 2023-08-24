@@ -29,6 +29,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.UpdateVehicleDto;
 import com.app.dto.VehicleBrandDto;
 import com.app.dto.VehicleResponseDto;
+import com.app.dto.VehicleResponseToCustomerDto;
 import com.app.dto.VehicleTypeDto;
 import com.app.entities.Vehicle;
 import com.app.service.ImageHandlingService;
@@ -64,7 +65,7 @@ public class VehicleController {
 	}
 	
 	@GetMapping("/by_location/{id}")
-	public List<VehicleResponseDto> getAllVehiclesByLocation(@PathVariable Long id)throws IOException{
+	public List<VehicleResponseToCustomerDto> getAllVehiclesByLocation(@PathVariable Long id)throws IOException{
 		
 		return vehicleService.getAllVehiclesByServiceLocation(id);
 	}
@@ -83,7 +84,7 @@ public class VehicleController {
 	
 	
 	@GetMapping("/{id}")
-	public VehicleResponseDto getVehicleById(@PathVariable Long id)throws IOException{
+	public VehicleResponseToCustomerDto getVehicleById(@PathVariable Long id)throws IOException{
 		
 		return vehicleService.getVehicleById(id);
 	}
@@ -96,7 +97,7 @@ public class VehicleController {
 	
 	
 	@PostMapping(value = "/images/{vehicleId}", consumes = "multipart/form-data")
-	public ApiResponse uploadImage(@PathVariable Long vehicleId, @RequestParam MultipartFile imageFile)
+	public ApiResponse uploadImage(@PathVariable Long vehicleId, @RequestParam("imageFile") MultipartFile imageFile)
 			throws IOException {
 		System.out.println("in upload img " + vehicleId);
 		return imgService.uploadImage(vehicleId, imageFile);

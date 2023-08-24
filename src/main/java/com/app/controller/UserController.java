@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ApiResponse;
 import com.app.dto.ChangePasswordDto;
 import com.app.dto.RegisterUserDto;
+import com.app.dto.ValidateUserDto;
 import com.app.dto.CredentialsRequestDto;
 import com.app.dto.CredentialsResponseDto;
 import com.app.dto.ProfileDto;
@@ -61,8 +62,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/forgotPassword")
-	public ApiResponse validateUserByEmail(@RequestBody String email) {
-		return userService.getValidUserByEmail(email);
+	public ApiResponse validateUserByEmail(@RequestBody @Valid ValidateUserDto validUser) {
+		return userService.getValidUserByEmail(validUser);
 	}
 	
 	@PutMapping("/updatePassword")

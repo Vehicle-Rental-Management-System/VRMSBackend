@@ -22,6 +22,9 @@ public class GlobalException {
 		Map<String, String> errMap = new HashMap<>();
 		// simply converting LIst of errs ---> Map of errs --> for better readability
 		// for the front end
+		
+		System.out.println(e);
+		
 		for (FieldError field : e.getFieldErrors())
 			errMap.put(field.getField(), field.getDefaultMessage());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errMap);

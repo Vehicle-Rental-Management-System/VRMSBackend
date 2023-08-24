@@ -13,6 +13,7 @@ import com.app.dao.UserRepository;
 import com.app.dto.ApiResponse;
 import com.app.dto.ChangePasswordDto;
 import com.app.dto.RegisterUserDto;
+import com.app.dto.ValidateUserDto;
 import com.app.dto.CredentialsRequestDto;
 import com.app.dto.CredentialsResponseDto;
 import com.app.dto.ProfileDto;
@@ -103,8 +104,9 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public ApiResponse getValidUserByEmail(String email) {
-		UserEntity user= userRepo.findByEmail(email)
+	public ApiResponse getValidUserByEmail(ValidateUserDto validUser) {
+		System.out.println(validUser);
+		UserEntity user= userRepo.findByEmail(validUser.getEmail())
 							.orElseThrow(() -> new RuntimeException("Not a Valid User Email"));
 	   return user != null ? new ApiResponse("Valid User") : new ApiResponse("Invalid User");
 	}

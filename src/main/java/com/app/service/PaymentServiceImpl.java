@@ -46,6 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
 			
 			PaymentDetailsEntity paymentDetails = new PaymentDetailsEntity("Succesfull", paymentDto.getPaymentAmount(), LocalDate.now(), bookingDetails);		
 			PaymentDetailsEntity paymentDetailsEntity = paymentRepository.save(paymentDetails);
+			bookingDetails.getVehicle().setStatus("NotAvailable");
 			return new ApiResponse("payment details added succesfully");
 		}
 		else {
