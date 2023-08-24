@@ -70,6 +70,7 @@ public class BookingController {
 	
 	@GetMapping("/yearly_revenue/{year}")
 	public Double getYearlyRevenue(@PathVariable String year) throws SQLException {
+		//This is for getting revenue
 		
 		return bookingService.getYearlyRevenue(year);
 	}
