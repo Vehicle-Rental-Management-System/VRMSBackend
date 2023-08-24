@@ -42,15 +42,15 @@ public class PaymentServiceImpl implements PaymentService {
 				.findByCardNoAndCvv(paymentDto.getCardNo(), paymentDto.getCvv());
 		
 		if(bankDetail != null && bankDetail.getExpiryDate().equals(paymentDto.getExpiryDate())) {
-			bookingDetails.setStatus("Successfull");
+			bookingDetails.setStatus("Successful");
 			
-			PaymentDetailsEntity paymentDetails = new PaymentDetailsEntity("Succesfull", paymentDto.getPaymentAmount(), LocalDate.now(), bookingDetails);		
+			PaymentDetailsEntity paymentDetails = new PaymentDetailsEntity("Successful", paymentDto.getPaymentAmount(), LocalDate.now(), bookingDetails);		
 			PaymentDetailsEntity paymentDetailsEntity = paymentRepository.save(paymentDetails);
 			bookingDetails.getVehicle().setStatus("NotAvailable");
 			return new ApiResponse("payment details added succesfully");
 		}
 		else {
-			bookingDetails.setStatus("UnSuccessfull");
+			bookingDetails.setStatus("UnSuccessful");
 			bookingDetails.getVehicle().setStatus("Available");
 			return new ApiResponse("payment failed..");
 			

@@ -85,7 +85,7 @@ public class BookingServiceImpl implements BookingService {
 		List<BookingDetailsEntity> bookingEntity=users.getBookings();
 		
 		
-		List<BookingDto> bookingDto=bookingEntity.stream().filter(booking-> booking.getStatus().equals("Pending") || booking.getStatus().equals("Successfull")).map(booking-> mapper.map(booking, BookingDto.class)).collect(Collectors.toList());
+		List<BookingDto> bookingDto=bookingEntity.stream().filter(booking-> booking.getStatus().equals("Pending") || booking.getStatus().equals("Successful")).map(booking-> mapper.map(booking, BookingDto.class)).collect(Collectors.toList());
 		
 		return bookingDto;
 	}
