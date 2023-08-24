@@ -33,7 +33,7 @@ public class BookingController {
 	
 
 	@PostMapping("/addbooking/{userId}")
-	public ApiResponse addBookingDetails(@RequestBody @Valid AddBookingDto booking, @PathVariable Long userId) {
+	public BookingResponseDto addBookingDetails(@RequestBody @Valid AddBookingDto booking, @PathVariable Long userId) {
 		
 		
 		return bookingService.addBookingDetails(booking,userId);

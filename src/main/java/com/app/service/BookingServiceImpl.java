@@ -56,7 +56,7 @@ public class BookingServiceImpl implements BookingService {
 	private PaymentRepository paymentRepo;
 	
 	@Override
-	public ApiResponse addBookingDetails(AddBookingDto bookingDto, Long userId) {
+	public BookingResponseDto addBookingDetails(AddBookingDto bookingDto, Long userId) {
 		
 		
 		
@@ -72,9 +72,9 @@ public class BookingServiceImpl implements BookingService {
 		
 		BookingDetailsEntity bookingEntity= bookingRepo.save(booking);
 		
+		BookingResponseDto bookingResponse =  mapper.map(bookingEntity, BookingResponseDto.class);
 		
-		
-		return new ApiResponse("Booking details added");
+		return bookingResponse;
 	}
 	
 	
